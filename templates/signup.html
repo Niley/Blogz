@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+
+<form action="/signup" method="post">
+  <p>
+    <label for="usrnm">User name</label>
+    <input type="text" name="usrnm" value="{{usrnm_ins}}">
+    <span>{{error_usrnm}}</span>
+  </p>
+  <p>
+    <label for="password">Password</label>
+    <input type="password" name="password" value="{{pw_ins}}">
+    <span>{{error_pw}}</span>
+  </p>
+  <p>
+    <label for="verify">Verify Password</label>
+    <input type="password" name="verify" value="{{verify_ins}}">
+  </p>
+  <p>
+    <input type="submit" value="signup">
+  </p>
+</form>
+
+{% endblock %}

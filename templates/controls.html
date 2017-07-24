@@ -1,0 +1,11 @@
+{% block content %}
+{% if usrnm == '' or usrnm == None %}
+    <a href="/login">Login</a>
+    <a href="/signup">Sign up</a>
+{% else %}
+    <form method="post" action='/logout'>
+        <button class='btn-default'>log out</button>
+    </form>
+    <span name = 'usrnm'>Logged in as: {{usrnm}}</span>
+{% endif %}
+{% endblock %}

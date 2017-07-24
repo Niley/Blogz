@@ -8,8 +8,8 @@
 </head>
 <body>
     <h1>{{h1}}</h1>
-    <a href="/blog">Blog</a>
-    <a href="/newpost">New post</a>
+    {% include "controls.html" %}
+    {% include "nav.html" %}
     {% block content %}
     {% endblock %}
 
