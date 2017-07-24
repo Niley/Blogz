@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+    {% if users|length == 0 %}
+    <p>No users yet; what a bore of a blog!</p>
+    {% else %}
+
+        <ul>
+            {% for user in users %}
+            <li>
+                <a href="/blog?author={{user.id}}">{{user.usrnm}}</a>.
+            </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endblock %}

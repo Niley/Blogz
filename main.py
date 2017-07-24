@@ -6,7 +6,7 @@ from models import BlogPost, User
 
 @app.before_request
 def require_login():
-    allowed_routes = ['login', 'signup', 'index']
+    allowed_routes = ['login', 'signup', 'index', 'userlist']
     if request.endpoint not in allowed_routes and 'usrnm' not in session:
         return redirect('/login')
 
@@ -16,6 +16,8 @@ def require_login():
 def index():
     usrnm = ""
     header = "Blog-Z"
+    post_id = request.args.get("post")
+    author_id = request.args.get("author")
     # posts = []
 
     # #checking whether I have an active session; will display user info if so
@@ -23,13 +25,28 @@ def index():
         author = User.query.filter_by(usrnm=session['usrnm']).first()
         usrnm = author.usrnm
         header = author.usrnm + " 's blog"
-        posts = BlogPost.query.filter_by(author=author).all()
     #     usrnm = session['usrnm']
     posts = BlogPost.query.all()
+    if post_id:
+        posts = BlogPost.query.filter_by(id=post_id).all()
+        header = posts[0].title
+    if author_id:
+        posts = BlogPost.query.filter_by(author_id=author_id).all()
+        author = User.query.filter_by(id=author_id).first()
+        header = author.usrnm + "'s posts."
 
     return render_template('blog.html', title= header, posts = posts, h1 = header, usrnm = usrnm)
 
     # return render_template('blog.html',title="Me blog!", posts = posts, h1 = header, usrnm=usrnm)
+
+@app.route('/users', methods=['GET'])
+def userlist():
+    usrnm = ''
+    if 'usrnm' in session:
+        usrnm = session['usrnm']
+    users = User.query.all()
+    return render_template('users.html', title = "User list", users = users, usrnm = usrnm)
+
 
 @app.route('/login', methods=['POST', 'GET'])
 def login():

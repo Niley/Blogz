@@ -8,9 +8,9 @@
         <ul>
             {% for post in posts %}
             <li>
-                <a href="/blog?id={{post.id}}">{{post.title}}</a>
+                <a href="/blog?post={{post.id}}">{{post.title}}</a>
                 {% if post.author != None %}
-                 by {{post.author.usrnm}}.
+                 by <a href="/blog?author={{post.author.id}}">{{post.author.usrnm}}</a>.
                 {% endif %}
                 <div>{{post.content}}</div>
             </li>
