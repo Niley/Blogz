@@ -4,12 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css')}}">
+    <link href='https://fonts.googleapis.com/css?family=Cormorant' rel='stylesheet' type='text/css' lazyload>
+    <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css' lazyload>
     <title>{{title}}</title>
 </head>
 <body>
+    <header>
+    {% include "nav.html" %}  
+    {% include "controls.html" %}   
+    </header>
     <h1>{{h1}}</h1>
-    {% include "controls.html" %}
-    {% include "nav.html" %}
+
     {% block content %}
     {% endblock %}
 

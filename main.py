@@ -10,8 +10,6 @@ def require_login():
     if request.endpoint not in allowed_routes and 'usrnm' not in session:
         return redirect('/login')
 
-
-@app.route('/', methods=['GET', 'POST'])
 @app.route('/blog', methods=['GET', 'POST'])
 def index():
     usrnm = ""
@@ -39,6 +37,7 @@ def index():
 
     # return render_template('blog.html',title="Me blog!", posts = posts, h1 = header, usrnm=usrnm)
 
+@app.route('/', methods=['GET', 'POST'])
 @app.route('/users', methods=['GET'])
 def userlist():
     usrnm = ''
@@ -165,7 +164,7 @@ def logout():
     
     if 'usrnm' in session:
         del session['usrnm']
-    return redirect('/')
+    return redirect('/blog')
 
 
 if __name__ == '__main__':
